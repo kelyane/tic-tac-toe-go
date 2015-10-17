@@ -5,7 +5,7 @@ import (
   "testing"
 )
 
-func initial_test(t *testing.T){
+func TestField(t *testing.T){
   Convey("Field", t, func() {
     field := NewField()
     So(field.isEmpty(),ShouldBeTrue)
