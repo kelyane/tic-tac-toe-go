@@ -15,6 +15,8 @@ func TestField(t *testing.T){
     fieldWinner := NewField()
     fieldWinner = Field{ positions: [3][3]int{{1,1,1},{0,0,0},{0,0,0}}}
     So(fieldWinner.isWinner(Player(player)),ShouldBeTrue)
+    So(fieldWinner.isTurnPossible(2,2),ShouldBeTrue)
+    So(fieldWinner.isTurnPossible(0,0),ShouldBeFalse)
     fieldWinner = Field{ positions: [3][3]int{{0,0,0},{1,1,1},{0,0,0}}}
     So(fieldWinner.isWinner(Player(player)),ShouldBeTrue)
     fieldWinner = Field{ positions: [3][3]int{{0,0,0},{0,0,0},{1,1,1}}}

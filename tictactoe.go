@@ -35,3 +35,7 @@ func (this *Field) isWinner(player Player) bool{
      (this.positions[0][0] == int(player) && this.positions[1][1] == int(player) && this.positions[2][2] == int(player)) || //Main diagonal
      (this.positions[0][2] == int(player) && this.positions[1][1] == int(player) && this.positions[2][0] == int(player)) )  //Oposite diagonal
 }
+
+func (this *Field) isTurnPossible(x int, y int) bool {
+  return this.positions[x][y] == 0
+}
