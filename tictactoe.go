@@ -13,5 +13,6 @@ func (this *Field) isGameFinished() bool{
 }
 
 func (this *Field) Turn(x int, y int, z int) Field {
-  return Field{ positions: [3][3]int{{2,0,0},{0,0,0},{0,0,0}}}
+  this.positions[x][y] = z
+  return *this
 }
