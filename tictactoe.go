@@ -11,8 +11,8 @@ type Field struct{
 type Player int
 
 const (
-        O Player = 0
         X Player = 1
+        O Player = 2
 )
 
 func NewField() Field {
