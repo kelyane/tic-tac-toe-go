@@ -32,7 +32,7 @@ func (this *Field) isWinner(player Player) bool{
   return (
      (this.positions[0][0] == int(player) && this.positions[0][1] == int(player) && this.positions[0][2] == int(player)) || //First row horizontal
      (this.positions[1][0] == int(player) && this.positions[1][1] == int(player) && this.positions[1][2] == int(player)) || //Second row horizontal
-     (this.positions[2][0] == int(player) && this.positions[2][1] == int(player) && this.positions[2][2] == int(player)) ||  //Third row horizontal
+     (this.positions[2][0] == int(player) && this.positions[2][1] == int(player) && this.positions[2][2] == int(player)) || //Third row horizontal
      (this.positions[0][0] == int(player) && this.positions[1][0] == int(player) && this.positions[2][0] == int(player)) || //First column vertical
      (this.positions[0][1] == int(player) && this.positions[1][1] == int(player) && this.positions[2][1] == int(player)) || //Second column vertical
      (this.positions[0][2] == int(player) && this.positions[1][2] == int(player) && this.positions[2][2] == int(player)) || //Third column vertical
