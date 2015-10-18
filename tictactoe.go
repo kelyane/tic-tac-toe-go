@@ -19,8 +19,8 @@ func NewField() Field {
   return Field{ positions: [3][3]int{{0,0,0},{0,0,0},{0,0,0}}}
 }
 
-func (this *Field) isGameFinished() bool{
-  return true
+func (this *Field) isGameFinished(x int, y int, player Player) bool{
+  return (!this.isTurnPossible(x,y) && this.isWinner(player))
 }
 
 func (this *Field) Turn(x int, y int, player Player) Field {
@@ -44,7 +44,7 @@ func (this *Field) isTurnPossible(x int, y int) bool {
   return this.positions[x][y] == 0
 }
 
-func (this *Field) printField() string{
+func (this *Field) fieldToString() string{
   fieldToStr := ""
 
   for i := 0; i <= 2; i++ {
