@@ -4,36 +4,41 @@ import (
     "net/http"
     "github.com/julienschmidt/httprouter"
     "fmt"
+    "strconv"
+    . "./src/"
   //  "encoding/json"
 )
 
 func main(){
-  // Instantiate a new router
+  field := NewField()
   r := httprouter.New()
 
-  // Get a user resource
   r.GET("/turn/:x/:y/:player", func(w http.ResponseWriter, r *http.Request, p httprouter.Params) {
-      // Stub an example user
-      /*u := field.Turn{
-          x:      p.ByName("x"),
-          y:      p.ByName("y"),
-          player: p.ByName("player"),
-      }*/
-      x :=      p.ByName("x")
-      y :=      p.ByName("y")
-      player := p.ByName("player")
+      x, y, player := ExtractGameParams(p)
 
-      // Marshal provided interface into JSON structure
-      //uj, _ := json.Marshal(u)
-
-      // Write content-type, statuscode, payload
       w.Header().Set("Content-Type", "application/json")
       w.WriteHeader(200)
-      fmt.Fprintf(w, "%s", x)
-      fmt.Fprintf(w, "%s", y)
-      fmt.Fprintf(w, "%s", player)
+
+      if(field.IsGameFinished(x,y,player)){
+        fmt.Fprintf(w, "%s", "Is Winner!!!\n")
+      }else{
+        field.Turn(x,y,player)
+        fmt.Fprintf(w, "%s", field.FieldToString())
+      }
   })
 
-  // Fire up the server
   http.ListenAndServe("localhost:3000", r)
+}
+
+func ExtractGameParams(p httprouter.Params) (x, y int, player Player) {
+  x, _ = strconv.Atoi(p.ByName("x"))
+  y, _ = strconv.Atoi(p.ByName("y"))
+  m := map[string] Player {
+    "X": X,
+    "O": O,
+  }
+  pString := p.ByName("player")
+  player, _ = m[pString]
+
+  return x, y, player
 }
