@@ -1,5 +1,9 @@
 package tictactoe
 
+import (
+    "strconv"
+)
+
 type Field struct{
   positions [3][3] int
 }
@@ -38,4 +42,18 @@ func (this *Field) isWinner(player Player) bool{
 
 func (this *Field) isTurnPossible(x int, y int) bool {
   return this.positions[x][y] == 0
+}
+
+func (this *Field) printField() string{
+  fieldToStr := ""
+
+  for i := 0; i <= 2; i++ {
+    for j := 0; j <= 2; j++ {
+      fieldToStr += strconv.Itoa(this.positions[i][j])
+      fieldToStr += " | "
+    }
+    fieldToStr += "\n"
+  }
+
+  return fieldToStr
 }
